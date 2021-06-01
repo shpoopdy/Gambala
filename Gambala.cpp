@@ -51,7 +51,7 @@ void Gambala()
 
   if(test == 1)
   {
-    diceGame();
+      diceGame();
   }
 };
 
