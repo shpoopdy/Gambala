@@ -1,7 +1,7 @@
 /* cpp file for dice
 
 By: Mikey
-Last modified: 2021-05-31
+Last modified: 2021-06-01
 */
 
 
@@ -9,6 +9,7 @@ Last modified: 2021-05-31
 //# include <string> was causing an ambiguity error.
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include "diceRules.h"
 #include "diceGame.h"
 
@@ -16,12 +17,20 @@ using namespace std;
 
 void diceGame()
 {
-  int balance = 100;
+  int balance;
   int bettingAmount;
   int guess;
   string playerName;
   char choice;
+  bool playing;
   int dice;
+  ifstream in_stream;
+  in_stream.open("balance.txt");
+  in_stream >> balance;
+  in_stream.close();
+
+  
+
   do
   {
     diceRules();
@@ -67,10 +76,33 @@ void diceGame()
     if(balance == 0)
     {
       cout << "Seems that you aren't as lucky as you lead me to believe." << endl;
+      ofstream out_stream;
+      out_stream.open("balance.txt");
+      out_stream << balance << endl;
+      out_stream.close();
       break;
     }
+    
 
-    cout << "Would you like to play again (y/n)?";
+    cout << "Would you like to play again (y/n)?" 
+         << " If you don't select either I'll just take it as a yes...";
     cin >> choice;
-  }while(choice == 'y' || 'Y');
+
+    if((choice == 'y') || (choice == 'Y'))
+    {
+      playing = true;
+    }
+    else if((choice == 'n') || (choice == 'N'))
+    {
+      ofstream out_stream;
+      out_stream.open("balance.txt");
+      out_stream << balance << endl;
+      out_stream.close();
+      playing = false;
+    }
+    
+    
+  }while(playing); //Something happening here that even when I select something other then y it would still loop.
+
+  
 }
