@@ -16,7 +16,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
-#include "diceGame.h"
+#include "games/diceRules.h"
+#include "games/diceGame.h"
 using namespace std;
 
 
