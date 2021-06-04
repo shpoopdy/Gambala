@@ -28,6 +28,7 @@ void Gambala()
   int bettingAmount;
   int dice;
   char choice;
+  char ch;
   int test;
   srand(time(0));
 
@@ -36,22 +37,47 @@ void Gambala()
   getline(cin, playerName);
 
   ifstream in_stream;
+  ofstream out_stream;
+
   in_stream.open("balance.txt");
-  if(in_stream)
+  if(!in_stream)
   {
-    in_stream >> balance;
-    in_stream.close();
-  }
-  else
-  {
-    balance = 0;
-    ofstream out_stream;
     out_stream.open("balance.txt");
-    out_stream << balance << endl;
+    balance = 0;
+    out_stream << balance;
     out_stream.close();
   }
+  in_stream.close();
 
+  in_stream.open("tmp.txt");
+  if(!in_stream)
+  {
+    out_stream.open("tmp.txt");
+    out_stream.close();
+  }
+  in_stream.close();
 
+  
+  //Decrypter
+  //==============
+  if(balance != 0)
+  {
+    out_stream.open("balance.txt");
+    in_stream.open("tmp.txt");
+    while(in_stream >> ch)
+    {
+      ch = ch - 100;
+      out_stream << ch;
+    }
+    out_stream.close();
+    in_stream.close();
+  }
+
+  in_stream.open("balance.txt");
+  in_stream >> balance;
+  in_stream.close();
+    
+  
   if(balance == 0)
   {
     cout << "HO HO! A fine name indeed. As a matter of fact, I like that name "
@@ -69,6 +95,8 @@ void Gambala()
   }
 
 
+
+
   cout << "When you're ready press 1 to play dice. " << endl;
   cin >> test;
 
@@ -77,6 +105,29 @@ void Gambala()
     diceGame();
   }
 
+  // Encrypter
+  //==============================
+  in_stream.open("balance.txt");
+  if(in_stream)
+  {
+    out_stream.open("tmp.txt");
+    while(in_stream >> ch)
+    {
+      ch = ch+100;
+      out_stream << ch;
+    }
+    in_stream.close();
+    out_stream.close();
+  }
+
+  out_stream.open("balance.txt");
+  in_stream.open("tmp.txt");
+  while(in_stream >> ch)
+  {
+    out_stream << ch;
+  }
+  out_stream.close();
+  in_stream.close();
 
 };
 
