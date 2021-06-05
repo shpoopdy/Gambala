@@ -40,6 +40,9 @@ void Gambala()
   ifstream in_stream;
   ofstream out_stream;
 
+
+  //Checking if you have the two necessary txt files.
+  //=================================================
   in_stream.open("balance.txt");
   if(!in_stream)
   {
