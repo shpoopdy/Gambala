@@ -5,7 +5,7 @@
   last modified: 2021-06-01
 
   To compile, type the following into the terminal:
-  g++ diceRules.cpp diceGame.cpp Gambala.cpp -o Gambala
+  g++ games/diceRules.cpp games/diceGame.cpp Gambala.cpp -o Gambala
 
   To run, type:
   ./Gambala
@@ -16,8 +16,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
-#include "games/diceRules.h"
-#include "games/diceGame.h"
+#include "games/dice/diceRules.h"
+#include "games/dice/diceGame.h"
 using namespace std;
 
 
@@ -58,7 +58,7 @@ void Gambala()
   }
   in_stream.close();
 
-  
+
   //Decrypter
   //==============
   if(balance != 0)
@@ -77,8 +77,8 @@ void Gambala()
   in_stream.open("balance.txt");
   in_stream >> balance;
   in_stream.close();
-    
-  
+
+
   if(balance == 0)
   {
     cout << "HO HO! A fine name indeed. As a matter of fact, I like that name "
