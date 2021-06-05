@@ -5,7 +5,7 @@
   last modified: 2021-06-01
 
   To compile, type the following into the terminal:
-  g++ games/diceRules.cpp games/diceGame.cpp Gambala.cpp -o Gambala
+  g++ games/dice/diceRules.cpp games/dice/diceGame.cpp Gambala.cpp -o Gambala
 
   To run, type:
   ./Gambala
