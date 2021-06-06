@@ -23,6 +23,12 @@ Cards::Cards(int init_numb, string init_suit, string init_face)
     face = init_face;
 }
 
+//Accessors
+int Cards::get_numb() const
+{
+  return card_numb;
+}
+
 //Mutators
 void Cards::set_numb(int new_numb)
 {

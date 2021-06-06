@@ -16,5 +16,5 @@ void blackJackRules()
     cout << "1. Get close to 21 without going over." << endl;
     cout << "2. You're playing against the computer!" << endl;
     cout << "3. Place bet and hit when you want a card or stay." << endl;
-    getchar(); //To give the player time to read the rules.
+    
 }

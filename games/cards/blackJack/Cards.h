@@ -18,6 +18,9 @@ class Cards
 
         Cards(int init_numb, string init_suit, string init_face);
 
+        //Accessors
+        int get_numb() const;
+
         //Mutators
         void set_numb(int new_numb);
         void set_suit(string new_suit);
@@ -25,7 +28,7 @@ class Cards
 
         //Other Methods
         void display_card() const;
-    
+
     private:
         int card_numb;
         string suit;
