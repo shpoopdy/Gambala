@@ -1,7 +1,7 @@
-/* cpp file for dice
+/* cpp file for blackJackGame
 
 By: Mikey
-Last modified: 2021-06-01
+Last modified: 2021-06-05
 */
 
 
@@ -40,5 +40,5 @@ void blackJackGame()
     int test;
     cin >> test;
     in_stream.close();
-    
+
 }

@@ -18,6 +18,8 @@
 #include <fstream>
 #include "games/dice/diceRules.h"
 #include "games/dice/diceGame.h"
+#include "games/cards/blackJack/blackJackGame.h"
+#include "games/cards/blackJack/Cards.h"
 using namespace std;
 
 
@@ -101,12 +103,16 @@ void Gambala()
 
 
 
-  cout << "When you're ready press 1 to play dice. " << endl;
+  cout << "When you're ready press 1 to play dice or 2 to play blackjack. " << endl;
   cin >> test;
 
   if(test == 1)
   {
     diceGame();
+  }
+  else if(test == 2)
+  {
+    blackJackGame();
   }
 
   // Encrypter
