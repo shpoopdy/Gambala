@@ -5,7 +5,7 @@
   last modified: 2021-06-01
 
   To compile, type the following into the terminal:
-  g++ games/dice/diceRules.cpp games/dice/diceGame.cpp Gambala.cpp -o Gambala
+  g++ games/dice/diceRules.cpp games/dice/diceGame.cpp games/cards/blackJack/blackJackRules.cpp games/cards/blackJack/blackJackGame.cpp games/cards/blackJack/Cards.cpp Gambala.cpp -o Gambala
 
   To run, type:
   ./Gambala
@@ -30,7 +30,7 @@ void Gambala()
   string playerName;
   int bettingAmount;
   int dice;
-  char choice;
+  int game_choice;
   char ch;
   int test;
   srand(time(0));
@@ -89,7 +89,6 @@ void Gambala()
     cout << "HO HO! A fine name indeed. As a matter of fact, I like that name "
          << "sooo much I'm gonna give you $100 to get you started!" << endl;
     balance = 100;
-    ofstream out_stream;
     out_stream.open("balance.txt");
     out_stream << balance << endl;
     out_stream.close();
@@ -101,19 +100,24 @@ void Gambala()
   }
 
 
+  do {
+    in_stream.open("balance.txt");
+    in_stream >> balance;
+    in_stream.close();
+    cout << "Your current balance is " << balance << ". "
+         << "To play Dice enter 1, enter 2 for Blackjack. "
+         << "If you'd like to leave then enter 3: ";
+    cin >> game_choice;
+    if(game_choice == 1)
+    {
+      diceGame();
+    }
+    else if(game_choice == 2)
+    {
+      blackJackGame();
+    }
+  }while(game_choice != 3);
 
-
-  cout << "When you're ready press 1 to play dice or 2 to play blackjack. " << endl;
-  cin >> test;
-
-  if(test == 1)
-  {
-    diceGame();
-  }
-  else if(test == 2)
-  {
-    blackJackGame();
-  }
 
   // Encrypter
   //==============================
