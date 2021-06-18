@@ -1,7 +1,7 @@
 /* cpp file for blackJackGame
 
 By: Mikey
-Last modified: 2021-06-05
+Last modified: 2021-06-18
 */
 
 
@@ -126,23 +126,27 @@ void blackJackGame()
       if(bust == true)
       {
         cout << "Sorry, but you bust. You lost $" << bettingAmount << ".\n";
+        balance -= bettingAmount;
       }
       else if(dealerBust == true)
       {
         cout << "Dealer bust! You've won $" << bettingAmount * 3 << ".\n";
+        balance = balance + (bettingAmount * 3);
       }
       else if(playerTotal > dealerTotal)
       {
         cout << "You won with " << playerTotal << "! "
              << "You've earned $" << bettingAmount * 3 << ".\n";
+        balance = balance + (bettingAmount * 3);
       }
       else
       {
         cout << "House wins! Sorry, but you've lost $" << bettingAmount << ".\n";
+        balance -= bettingAmount;
       }
 
 
-      cout << "Want to continue?";
+      cout << "To continue enter y, otherwise any key will take you out:  ";
       cin >> choice;
       player.clear();
       dealer.clear();
@@ -151,7 +155,17 @@ void blackJackGame()
       {
         playing = true;
       }
+      else
+      {
+        ofstream out_stream;
+        out_stream.open("balance.txt");
+        out_stream << balance << endl;
+        out_stream.close();
+        delete card_ptr;
+        card_ptr = NULL;
+        playing = false;
+      }
 
-    } while(playing);
+    }while(playing);
 
 }
