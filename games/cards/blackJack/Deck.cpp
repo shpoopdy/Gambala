@@ -1,15 +1,15 @@
 #include "Deck.h"
 #include <iostream>
+#include <algorithm>
 
 Deck::Deck()
     : deck()
 {
-    deck.reserve(52);
     for(Card::Ranks r=Card::TWO; r <= Card::ACE; r = static_cast<Card::Ranks>(static_cast<int>(r) + 1))
     {
         for(Card::Suits s=Card::HEARTS; s <= Card::SPADES; s = static_cast<Card::Suits>(static_cast<int>(s) + 1))
         {
-            Card* card = new Card(r, s);
+            deck.push_back(new Card(r, s));
         }
     }
 }
@@ -21,4 +21,28 @@ Deck::~Deck()
         delete card;
     }
     deck.clear();
+}
+
+void Deck::testPrint()
+{
+    for(Card* card : deck)
+    {
+        card->test();
+        std::cout << " ";
+    }
+}
+
+void Deck::Shuffle()
+{
+    std::random_shuffle(deck.begin(), deck.end());
+}
+
+Card* Deck::TopCard()
+{
+    return deck.front();
+}
+
+void Deck::PopCard()
+{
+    deck.erase(deck.begin());
 }

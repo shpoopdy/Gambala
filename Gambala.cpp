@@ -5,7 +5,7 @@
   last modified: 2021-06-01
 
   To compile, type the following into the terminal:
-  g++ games/dice/diceRules.cpp games/dice/diceGame.cpp games/cards/blackJack/blackJackRules.cpp games/cards/blackJack/blackJackGame.cpp games/cards/blackJack/Cards.cpp Gambala.cpp -o Gambala
+  g++ games/dice/diceRules.cpp games/dice/diceGame.cpp games/cards/blackJack/blackJackRules.cpp games/cards/blackJack/blackJackGame.cpp games/cards/blackJack/Card.cpp games/cards/blackJack/Deck.cpp Gambala.cpp -o Gambala
 
   To run, type:
   ./Gambala
@@ -19,7 +19,8 @@
 #include "games/dice/diceRules.h"
 #include "games/dice/diceGame.h"
 #include "games/cards/blackJack/blackJackGame.h"
-#include "games/cards/blackJack/Cards.h"
+#include "games/cards/blackJack/Card.h"
+#include "games/cards/blackJack/Deck.h"
 using namespace std;
 
 

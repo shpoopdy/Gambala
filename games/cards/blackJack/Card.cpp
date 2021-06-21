@@ -21,13 +21,17 @@ Card::Suits Card::getSuit()
 int Card::getFaceValue()
 {
     if(Rank <= TEN)
+    {
         return static_cast<int>(Rank);
-
-    if(Rank <= KING)
+    }
+    else if(Rank <= KING)
+    {
         return 10;
-    
-
-    return 11;
+    }
+    else
+    {
+        return 11;
+    }
 }
 
 void Card::test()
@@ -55,18 +59,18 @@ void Card::test()
 
     if(Suit == HEARTS)
     {
-        std::cout << "Hearts";
+        std::cout << " Hearts";
     }
     else if(Suit == DIAMONDS)
     {
-        std::cout << "Diamond";
+        std::cout << " Diamond";
     }
     else if(Suit == CLUBS )
     {
-        std::cout << "Clubs";
+        std::cout << " Clubs";
     }
     else
     {
-        std::cout << "Spades";
+        std::cout << " Spades";
     }
 }

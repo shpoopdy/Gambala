@@ -12,44 +12,32 @@ Last modified: 2021-06-18
 #include <vector>
 #include "blackJackRules.h"
 #include "blackJackGame.h"
-#include "Cards.h"
+#include "Card.h"
+#include "Deck.h"
 
 void blackJackGame()
 {
     int AMOUNT = 52;
-    Cards *card_ptr = NULL;
+    Card *card_ptr = NULL;
     int bettingAmount;
     char choice;
-    card_ptr = new Cards[AMOUNT];
     bool playing = true;
     int balance;
-    vector<Cards> player;
-    vector<Cards> dealer;
+    vector<Card> player;
+    vector<Card> dealer;
     ifstream in_stream;
     in_stream.open("balance.txt");
     in_stream >> balance;
     in_stream.close();
-    in_stream.open("Cards.txt");
-    for(int i = 0; i < AMOUNT; i++)
-    {
-        int temp_int;
-        string first;
-        string next;
-        in_stream >> temp_int;
-        in_stream >> first;
-        in_stream >> next;
-
-        card_ptr[i].set_numb(temp_int);
-        card_ptr[i].set_suit(first);
-        card_ptr[i].set_face(next);
-    }
-
-    in_stream.close();
+    
+    Deck deck;
+    
+    
 
     do {
       blackJackRules();
-      cout << "Your current balance is $" << balance << endl;
-      cout << endl;
+      std::cout << "Your current balance is $" << balance << std::endl;
+      std::cout << std::endl;
       srand (time (0));
       int randomOne = rand() % 52;
       int randomTwo = rand() % 52;
@@ -57,33 +45,47 @@ void blackJackGame()
       int hit;
       bool bust = false;
       bool dealerBust = false;
+      deck.Shuffle();
 
 
 
 
       do
       {
-        cout << "Enter your bet ";
-        cin >> bettingAmount;
+        std::cout << "Enter your bet ";
+        std::cin >> bettingAmount;
         if(bettingAmount > balance)
         {
-          cout << "That's more than what ya got! Try being a little reasonable" << endl;
+          std::cout << "That's more than what ya got! Try being a little reasonable" << std::endl;
         }
       }while(bettingAmount > balance);
 
 
       int playerTotal = 0;
       int dealerTotal = 0;
-      player.push_back(card_ptr[randomOne]);
-      player.push_back(card_ptr[randomTwo]);
-      dealer.push_back(card_ptr[randomThree]);
-      cout << "You have " << player[0].get_numb() << " and ";
-      cout << player[1].get_numb() << endl;
-      playerTotal = player[0].get_numb() + player[1].get_numb();
+      for(int i = 0; i < 2; i++)
+      {
+        card_ptr = deck.TopCard();
+        player.push_back(*card_ptr);
+        delete card_ptr;
+        deck.PopCard();
+        card_ptr = NULL;
+      }
+    
+      
+      std::cout << "You have " << player[0].getFaceValue() << " and ";
+      std::cout << player[1].getFaceValue() << endl;
+      playerTotal = player[0].getFaceValue() + player[1].getFaceValue();
 
-      cout << "Dealer has " << dealer[0].get_numb() << "." << endl;
-      dealerTotal += dealer[0].get_numb();
-      cout << "Dealer total " << dealerTotal << "." << endl;
+      card_ptr = deck.TopCard();
+      dealer.push_back(*card_ptr);
+      delete card_ptr;
+      deck.PopCard();
+      card_ptr = NULL;
+
+      std::cout << "Dealer has a " << dealer[0].getFaceValue() << "." << std::endl;
+      dealerTotal += dealer[0].getFaceValue();
+      
 
 
 
@@ -92,25 +94,28 @@ void blackJackGame()
         int loopRand = rand() % 52;
         cout << "Your total is " << playerTotal << "." << endl;
         cout << "Press 1 for another card or 2 to stay: ";
-        cin >> hit;
+        std::cin >> hit;
         if(hit == 1)
         {
-          cout << "You received a " << card_ptr[loopRand].get_numb() << "!\n";
-          player.push_back(card_ptr[loopRand]);
-          playerTotal += card_ptr[loopRand].get_numb();
+          card_ptr = deck.TopCard();
+          cout << "You received a " << card_ptr->getFaceValue() << "!\n";
+          player.push_back(*card_ptr);
+          playerTotal += card_ptr->getFaceValue();
           if(playerTotal > 21)
           {
             cout << "Oof, looks like you bust son." << endl;
             bust = true;
           }
+          delete card_ptr;
+          card_ptr = NULL;
         }
         else if(hit == 2)
         {
+          card_ptr = deck.TopCard();
           do {
-            int dealLoop = rand() % 52;
-            cout << "Dealer received a " << card_ptr[dealLoop].get_numb() << "!\n";
-            dealer.push_back(card_ptr[dealLoop]);
-            dealerTotal += card_ptr[dealLoop].get_numb();
+            cout << "Dealer received a " << card_ptr->getFaceValue() << "!\n";
+            dealer.push_back(*card_ptr);
+            dealerTotal += card_ptr->getFaceValue();
             cout << "Dealer total is " << dealerTotal << "." << endl;
             
 
@@ -147,7 +152,7 @@ void blackJackGame()
 
 
       cout << "To continue enter y, otherwise any key will take you out:  ";
-      cin >> choice;
+      std::cin >> choice;
       player.clear();
       dealer.clear();
 
