@@ -46,3 +46,8 @@ void Deck::PopCard()
 {
     deck.erase(deck.begin());
 }
+
+void Deck::sizeTest()
+{
+    std::cout << "Deck size is: " << deck.size();
+}

@@ -15,6 +15,7 @@ class Deck
 
         Card* TopCard();
         void PopCard();
+        void sizeTest();
     private:
         std::deque<Card*> deck;
 };

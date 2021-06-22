@@ -30,7 +30,7 @@ void blackJackGame()
     in_stream >> balance;
     in_stream.close();
     
-    Deck deck;
+    
     
     
 
@@ -39,13 +39,12 @@ void blackJackGame()
       std::cout << "Your current balance is $" << balance << std::endl;
       std::cout << std::endl;
       srand (time (0));
-      int randomOne = rand() % 52;
-      int randomTwo = rand() % 52;
-      int randomThree = rand() % 52;
       int hit;
       bool bust = false;
       bool dealerBust = false;
+      Deck deck;
       deck.Shuffle();
+      
 
 
 
