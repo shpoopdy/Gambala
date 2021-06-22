@@ -42,6 +42,7 @@ void blackJackGame()
       int hit;
       bool bust = false;
       bool dealerBust = false;
+      bool hasAce = false;
       Deck deck;
       deck.Shuffle();
       
@@ -90,7 +91,6 @@ void blackJackGame()
 
 
       do {
-        int loopRand = rand() % 52;
         cout << "Your total is " << playerTotal << "." << endl;
         cout << "Press 1 for another card or 2 to stay: ";
         std::cin >> hit;
@@ -173,3 +173,35 @@ void blackJackGame()
     }while(playing);
 
 }
+
+/* create a function that checks the total and does the decision for me.
+https://github.com/RobinLmn/BlackJackGame/blob/master/blackjack%20copy.cpp source.
+int Hand::getTotal() const
+{
+    vector<Card> h = this->hand;
+
+    int total = 0;
+    for (Card card: h)
+    {
+        total += card.getValue();
+    }
+
+    int countA = this->countAces;
+
+    while (total != 21 && countA > 0)
+    {
+        // Make aces count for 11 instead of 1
+        if (total <= 11)
+        {
+            total += 10;
+            countA -= 1;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return total;
+};
+*/
