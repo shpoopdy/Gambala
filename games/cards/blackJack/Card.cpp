@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "Card.h"
 
 Card::Card(Ranks r, Suits s)
@@ -17,7 +18,7 @@ Card::Suits Card::getSuit()
     return suit;
 }
 
-int Card::getFaceValue()
+int Card::getValue()
 {
     if(rank <= TEN)
     {
@@ -26,10 +27,6 @@ int Card::getFaceValue()
     else if(rank <= KING)
     {
         return 10;
-    }
-    else
-    {
-        return 11;
     }
 }
 
@@ -72,4 +69,59 @@ void Card::test()
     {
         std::cout << " Spades";
     }
+}
+
+/////////////////////////////////////////////////////
+
+// Hand
+
+void Hand::add(Card c)
+{
+
+    if (c.getRank() == '1')
+    {
+        this->countAces++;
+    }
+
+    hand.push_back(c);
+};
+
+void Hand::clear()
+{
+    (this->countAces) = 0;
+    (this->hand).clear();
+};
+
+int Hand::getTotal() const
+{
+    std::vector<Card> h = this->hand;
+
+    int total = 0;
+    for (Card card: h)
+    {
+        total += card.getValue();
+    }
+
+    int countA = this->countAces;
+
+    while (total != 21 && countA > 0)
+    {
+        // Make aces count for 11 instead of 1
+        if (total <= 11)
+        {
+            total += 10;
+            countA -= 1;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return total;
+};
+
+std::vector<Card> Hand::getVecHand()
+{
+    return this->hand;
 }

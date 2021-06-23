@@ -73,9 +73,9 @@ void blackJackGame()
       }
     
       
-      std::cout << "You have " << player[0].getFaceValue() << " and ";
-      std::cout << player[1].getFaceValue() << endl;
-      playerTotal = player[0].getFaceValue() + player[1].getFaceValue();
+      std::cout << "You have " << player[0].getValue() << " and ";
+      std::cout << player[1].getValue() << endl;
+      playerTotal = player[0].getValue() + player[1].getValue();
 
       card_ptr = deck.TopCard();
       dealer.push_back(*card_ptr);
@@ -83,8 +83,8 @@ void blackJackGame()
       deck.PopCard();
       card_ptr = NULL;
 
-      std::cout << "Dealer has a " << dealer[0].getFaceValue() << "." << std::endl;
-      dealerTotal += dealer[0].getFaceValue();
+      std::cout << "Dealer has a " << dealer[0].getValue() << "." << std::endl;
+      dealerTotal += dealer[0].getValue();
       
 
 
@@ -97,9 +97,9 @@ void blackJackGame()
         if(hit == 1)
         {
           card_ptr = deck.TopCard();
-          cout << "You received a " << card_ptr->getFaceValue() << "!\n";
+          cout << "You received a " << card_ptr->getValue() << "!\n";
           player.push_back(*card_ptr);
-          playerTotal += card_ptr->getFaceValue();
+          playerTotal += card_ptr->getValue();
           deck.PopCard();
           if(playerTotal > 21)
           {
@@ -113,9 +113,9 @@ void blackJackGame()
         {
           do {
             card_ptr = deck.TopCard();
-            cout << "Dealer received a " << card_ptr->getFaceValue() << "!\n";
+            cout << "Dealer received a " << card_ptr->getValue() << "!\n";
             dealer.push_back(*card_ptr);
-            dealerTotal += card_ptr->getFaceValue();
+            dealerTotal += card_ptr->getValue();
             deck.PopCard();
             cout << "Dealer total is " << dealerTotal << "." << endl;
             

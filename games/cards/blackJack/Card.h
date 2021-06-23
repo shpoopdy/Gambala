@@ -43,12 +43,29 @@ class Card
         Ranks getRank();
         Suits getSuit();
 
-        int getFaceValue();
+        int getValue();
 
         void test();
     private:
         Ranks rank;
         Suits suit;
+};
+
+
+class Hand
+{
+
+    // Field
+    private: 
+        std::vector<Card> hand;
+        int countAces = 0;
+
+    // Methods
+    public:
+        vector<Card> getVecHand();
+        void add(Card c);
+        void clear();
+        int getTotal() const;
 };
 
 
