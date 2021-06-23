@@ -1,30 +1,29 @@
 #include <iostream>
 #include "Card.h"
 
-Card::Card(Ranks RANK, Suits SUIT)
-        : Rank(RANK),
-        Suit(SUIT)
+Card::Card(Ranks r, Suits s)
 {
-
+    this->rank = r;
+    this->suit = s;
 }
 
 Card::Ranks Card::getRank()
 {
-    return Rank;
+    return rank;
 }
 
 Card::Suits Card::getSuit()
 {
-    return Suit;
+    return suit;
 }
 
 int Card::getFaceValue()
 {
-    if(Rank <= TEN)
+    if(rank <= TEN)
     {
-        return static_cast<int>(Rank);
+        return static_cast<int>(rank);
     }
-    else if(Rank <= KING)
+    else if(rank <= KING)
     {
         return 10;
     }
@@ -36,19 +35,19 @@ int Card::getFaceValue()
 
 void Card::test()
 {
-    if(Rank <= TEN)
+    if(rank <= TEN)
     {
-    std::cout << Rank;
+    std::cout << rank;
     } 
-    else if(Rank == JACK)
+    else if(rank == JACK)
     {
         std::cout << "Jack";
     }
-    else if(Rank == QUEEN)
+    else if(rank == QUEEN)
     {
         std::cout << "Queen";
     }
-    else if(Rank == KING)
+    else if(rank == KING)
     {
         std::cout << "King";
     }
@@ -57,15 +56,15 @@ void Card::test()
         std::cout << "Ace";
     }
 
-    if(Suit == HEARTS)
+    if(suit == HEARTS)
     {
         std::cout << " Hearts";
     }
-    else if(Suit == DIAMONDS)
+    else if(suit == DIAMONDS)
     {
         std::cout << " Diamond";
     }
-    else if(Suit == CLUBS )
+    else if(suit == CLUBS )
     {
         std::cout << " Clubs";
     }

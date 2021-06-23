@@ -100,6 +100,7 @@ void blackJackGame()
           cout << "You received a " << card_ptr->getFaceValue() << "!\n";
           player.push_back(*card_ptr);
           playerTotal += card_ptr->getFaceValue();
+          deck.PopCard();
           if(playerTotal > 21)
           {
             cout << "Oof, looks like you bust son." << endl;
@@ -110,11 +111,12 @@ void blackJackGame()
         }
         else if(hit == 2)
         {
-          card_ptr = deck.TopCard();
           do {
+            card_ptr = deck.TopCard();
             cout << "Dealer received a " << card_ptr->getFaceValue() << "!\n";
             dealer.push_back(*card_ptr);
             dealerTotal += card_ptr->getFaceValue();
+            deck.PopCard();
             cout << "Dealer total is " << dealerTotal << "." << endl;
             
 
@@ -123,6 +125,8 @@ void blackJackGame()
               cout << "Dealer has bust!" << endl;
               dealerBust = true;
             }
+            delete card_ptr;
+            card_ptr = NULL;
           }while(dealerTotal < 17 && dealerBust == false);
         }
       }while(hit == 1 && bust == false);

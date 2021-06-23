@@ -105,9 +105,8 @@ void Gambala()
     in_stream.open("balance.txt");
     in_stream >> balance;
     in_stream.close();
-    cout << "Your current balance is " << balance << ". "
-         << "To play Dice enter 1, enter 2 for Blackjack. "
-         << "If you'd like to leave then enter 3: ";
+    cout << "To play Dice enter 1, enter 2 for Blackjack. "
+         << "If you'd like to leave then enter 3: "; 
     cin >> game_choice;
     if(game_choice == 1)
     {

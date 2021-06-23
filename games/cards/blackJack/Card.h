@@ -15,7 +15,7 @@ class Card
     public:
         enum Suits
         {
-            HEARTS = 3,
+            HEARTS,
             DIAMONDS,
             CLUBS,
             SPADES
@@ -23,7 +23,8 @@ class Card
 
         enum Ranks
         {
-            TWO = 2,
+            ACE = 1,
+            TWO,
             THREE,
             FOUR,
             FIVE,
@@ -35,7 +36,6 @@ class Card
             JACK,
             QUEEN,
             KING,
-            ACE
         };
 
         Card(Ranks RANK, Suits SUIT);
@@ -47,8 +47,8 @@ class Card
 
         void test();
     private:
-        Ranks Rank;
-        Suits Suit;
+        Ranks rank;
+        Suits suit;
 };
 
 

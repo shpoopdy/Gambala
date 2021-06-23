@@ -5,7 +5,7 @@
 Deck::Deck()
     : deck()
 {
-    for(Card::Ranks r=Card::TWO; r <= Card::ACE; r = static_cast<Card::Ranks>(static_cast<int>(r) + 1))
+    for(Card::Ranks r=Card::ACE; r <= Card::KING; r = static_cast<Card::Ranks>(static_cast<int>(r) + 1))
     {
         for(Card::Suits s=Card::HEARTS; s <= Card::SPADES; s = static_cast<Card::Suits>(static_cast<int>(s) + 1))
         {
