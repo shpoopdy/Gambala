@@ -23,9 +23,9 @@ void blackJackGame()
     char choice;
     bool playing = true;
     int balance;
-    vector<Card> player;
-    vector<Card> dealer;
-    ifstream in_stream;
+    Hand player;
+    Hand dealer;
+    std::ifstream in_stream;
     in_stream.open("balance.txt");
     in_stream >> balance;
     in_stream.close();
@@ -40,7 +40,7 @@ void blackJackGame()
       std::cout << std::endl;
       srand (time (0));
       int hit;
-      bool bust = false;
+      bool playerBust = false;
       bool dealerBust = false;
       bool hasAce = false;
       Deck deck;
@@ -66,45 +66,44 @@ void blackJackGame()
       for(int i = 0; i < 2; i++)
       {
         card_ptr = deck.TopCard();
-        player.push_back(*card_ptr);
+        player.add(*card_ptr);
         delete card_ptr;
         deck.PopCard();
         card_ptr = NULL;
       }
     
-      
-      std::cout << "You have " << player[0].getValue() << " and ";
-      std::cout << player[1].getValue() << endl;
-      playerTotal = player[0].getValue() + player[1].getValue();
+      std::cout << "You have "; player.display_hand();
+      playerTotal = player.getTotal();
+      std::cout << " Your total is " << playerTotal << ". ";
 
       card_ptr = deck.TopCard();
-      dealer.push_back(*card_ptr);
+      dealer.add(*card_ptr);
       delete card_ptr;
       deck.PopCard();
       card_ptr = NULL;
 
-      std::cout << "Dealer has a " << dealer[0].getValue() << "." << std::endl;
-      dealerTotal += dealer[0].getValue();
+      std::cout << "Dealer has a "; dealer.display_hand();
+      dealerTotal = dealer.getTotal();
       
 
 
 
 
       do {
-        cout << "Your total is " << playerTotal << "." << endl;
-        cout << "Press 1 for another card or 2 to stay: ";
+        std::cout << " Your total is " << playerTotal << ".\n";
+        std::cout << "Press 1 for another card or 2 to stay: ";
         std::cin >> hit;
         if(hit == 1)
         {
           card_ptr = deck.TopCard();
-          cout << "You received a " << card_ptr->getValue() << "!\n";
-          player.push_back(*card_ptr);
-          playerTotal += card_ptr->getValue();
+          std::cout << "You received a " << card_ptr->getValue() << "!\n";
+          player.add(*card_ptr);
+          playerTotal = player.getTotal();
           deck.PopCard();
           if(playerTotal > 21)
           {
-            cout << "Oof, looks like you bust son." << endl;
-            bust = true;
+            std::cout << "Oof, looks like you bust son.\n";
+            playerBust = true;
           }
           delete card_ptr;
           card_ptr = NULL;
@@ -113,48 +112,52 @@ void blackJackGame()
         {
           do {
             card_ptr = deck.TopCard();
-            cout << "Dealer received a " << card_ptr->getValue() << "!\n";
-            dealer.push_back(*card_ptr);
-            dealerTotal += card_ptr->getValue();
+            std::cout << "Dealer received a " << card_ptr->getValue() << "!\n";
+            dealer.add(*card_ptr);
+            dealerTotal = dealer.getTotal();
             deck.PopCard();
-            cout << "Dealer total is " << dealerTotal << "." << endl;
+            std::cout << "Dealer total is " << dealer.getTotal() << ".\n";
             
 
             if(dealerTotal > 21)
             {
-              cout << "Dealer has bust!" << endl;
+              std::cout << "Dealer has bust!\n";
               dealerBust = true;
             }
             delete card_ptr;
             card_ptr = NULL;
           }while(dealerTotal < 17 && dealerBust == false);
         }
-      }while(hit == 1 && bust == false);
+      }while(hit == 1 && playerBust == false);
 
-      if(bust == true)
+      if(playerBust == true)
       {
-        cout << "Sorry, but you bust. You lost $" << bettingAmount << ".\n";
+        std::cout << "Sorry, but you bust. You lost $" << bettingAmount << ".\n";
         balance -= bettingAmount;
       }
       else if(dealerBust == true)
       {
-        cout << "Dealer bust! You've won $" << bettingAmount * 3 << ".\n";
-        balance = balance + (bettingAmount * 3);
+        std::cout << "Dealer bust! You've won $" << bettingAmount * 2 << ".\n";
+        balance = balance + (bettingAmount * 2);
       }
       else if(playerTotal > dealerTotal)
       {
-        cout << "You won with " << playerTotal << "! "
-             << "You've earned $" << bettingAmount * 3 << ".\n";
-        balance = balance + (bettingAmount * 3);
+        std::cout << "You won with " << player.getTotal() << "! "
+             << "You've earned $" << bettingAmount * 2 << ".\n";
+        balance = balance + (bettingAmount * 2);
+      }
+      else if(playerTotal == dealerTotal)
+      {
+        std::cout << "It's a push! You get your money back.";
       }
       else
       {
-        cout << "House wins! Sorry, but you've lost $" << bettingAmount << ".\n";
+        std::cout << "House wins! Sorry, but you've lost $" << bettingAmount << ".\n";
         balance -= bettingAmount;
       }
 
 
-      cout << "To continue enter y, otherwise any key will take you out:  ";
+      std::cout << "To continue enter y, otherwise any key will take you out:  ";
       std::cin >> choice;
       player.clear();
       dealer.clear();
@@ -165,9 +168,9 @@ void blackJackGame()
       }
       else
       {
-        ofstream out_stream;
+        std::ofstream out_stream;
         out_stream.open("balance.txt");
-        out_stream << balance << endl;
+        out_stream << balance << std::endl;
         out_stream.close();
         delete card_ptr;
         card_ptr = NULL;
@@ -177,35 +180,3 @@ void blackJackGame()
     }while(playing);
 
 }
-
-/* create a function that checks the total and does the decision for me.
-https://github.com/RobinLmn/BlackJackGame/blob/master/blackjack%20copy.cpp source.
-int Hand::getTotal() const
-{
-    vector<Card> h = this->hand;
-
-    int total = 0;
-    for (Card card: h)
-    {
-        total += card.getValue();
-    }
-
-    int countA = this->countAces;
-
-    while (total != 21 && countA > 0)
-    {
-        // Make aces count for 11 instead of 1
-        if (total <= 11)
-        {
-            total += 10;
-            countA -= 1;
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    return total;
-};
-*/

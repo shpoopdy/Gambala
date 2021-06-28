@@ -32,7 +32,11 @@ int Card::getValue()
 
 void Card::test()
 {
-    if(rank <= TEN)
+    if(rank == ACE)
+    {
+        std::cout << "Ace of";
+    }
+    else if(rank <= TEN)
     {
     std::cout << rank;
     } 
@@ -44,13 +48,9 @@ void Card::test()
     {
         std::cout << "Queen";
     }
-    else if(rank == KING)
-    {
-        std::cout << "King";
-    }
     else
     {
-        std::cout << "Ace";
+        std::cout << "King";
     }
 
     if(suit == HEARTS)
@@ -77,8 +77,7 @@ void Card::test()
 
 void Hand::add(Card c)
 {
-
-    if (c.getRank() == '1')
+    if (c.getRank() == 1)
     {
         this->countAces++;
     }
@@ -124,4 +123,15 @@ int Hand::getTotal() const
 std::vector<Card> Hand::getVecHand()
 {
     return this->hand;
+}
+
+void Hand::display_hand() const
+{
+    for(int i = 0; i < hand.size(); i++)
+    {
+        Card cardCopy = hand[i];
+        cardCopy.test();
+        std::cout << " ";
+    }
+    std::cout << "!";
 }

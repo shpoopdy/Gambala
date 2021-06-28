@@ -8,7 +8,7 @@ Last modified: 2021-06-19
 #define CARD_H
 
 #include <string>
-using namespace std;
+#include <vector>
 
 class Card 
 {
@@ -38,7 +38,7 @@ class Card
             KING,
         };
 
-        Card(Ranks RANK, Suits SUIT);
+        Card(Ranks r, Suits s);
 
         Ranks getRank();
         Suits getSuit();
@@ -62,10 +62,11 @@ class Hand
 
     // Methods
     public:
-        vector<Card> getVecHand();
+        std::vector<Card> getVecHand();
         void add(Card c);
         void clear();
         int getTotal() const;
+        void display_hand() const;
 };
 
 
