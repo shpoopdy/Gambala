@@ -34,7 +34,7 @@ void Card::test()
 {
     if(rank == ACE)
     {
-        std::cout << "Ace of";
+        std::cout << "Ace";
     }
     else if(rank <= TEN)
     {
@@ -55,19 +55,19 @@ void Card::test()
 
     if(suit == HEARTS)
     {
-        std::cout << " Hearts";
+        std::cout << " of Hearts";
     }
     else if(suit == DIAMONDS)
     {
-        std::cout << " Diamond";
+        std::cout << " of Diamonds";
     }
     else if(suit == CLUBS )
     {
-        std::cout << " Clubs";
+        std::cout << " of Clubs";
     }
     else
     {
-        std::cout << " Spades";
+        std::cout << " of Spades";
     }
 }
 
@@ -131,7 +131,14 @@ void Hand::display_hand() const
     {
         Card cardCopy = hand[i];
         cardCopy.test();
-        std::cout << " ";
+        if(i == 0)
+        {
+            std::cout << " and a ";
+        }
+        else
+        {
+            std::cout << "!";
+        }
+        
     }
-    std::cout << "!";
 }
