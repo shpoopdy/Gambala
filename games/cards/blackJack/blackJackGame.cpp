@@ -78,9 +78,9 @@ void blackJackGame()
       card_ptr = deck.TopCard();
       dealer.add(*card_ptr);
       deck.PopCard();
-      
+      std::cout << std::endl;
 
-      std::cout << " Dealer has a "; card_ptr->test();
+      std::cout << "Dealer has a "; card_ptr->test();
       std::cout << ".\n";
       delete card_ptr;
       card_ptr = NULL;
