@@ -45,7 +45,7 @@ class Card
 
         int getValue();
 
-        void test();
+        void cardDisplay();
     private:
         Ranks rank;
         Suits suit;

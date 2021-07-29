@@ -30,7 +30,7 @@ int Card::getValue()
     }
 }
 
-void Card::test()
+void Card::cardDisplay()
 {
     if(rank == ACE)
     {
@@ -130,7 +130,7 @@ void Hand::display_hand() const
     for(int i = 0; i < hand.size(); i++)
     {
         Card cardCopy = hand[i];
-        cardCopy.test();
+        cardCopy.cardDisplay();
         if(i == 0)
         {
             std::cout << " and a ";
