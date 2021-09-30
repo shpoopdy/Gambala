@@ -1,7 +1,7 @@
 /* cpp file for function: diceRules
 
 By: Mikey
-Last modified: 2021-05-31
+Last modified: 2021-09-29
  */
 #include <iostream>
 #include <string>
@@ -9,8 +9,7 @@ Last modified: 2021-05-31
 
 using namespace std;
 
-void diceRules()
-{
+void diceRules() {
     system("cls");
     cout << "========== Dice Game Rules ==========" << endl;
     cout << "1. Choose a number from 1 to 10." << endl;

@@ -1,7 +1,7 @@
 /* cpp file for dice
 
 By: Mikey
-Last modified: 2021-06-01
+Last modified: 2021-09-29
 */
 
 
@@ -15,8 +15,7 @@ Last modified: 2021-06-01
 
 using namespace std;
 
-void diceGame()
-{
+void diceGame() {
   int balance;
   int bettingAmount;
   int guess;
@@ -29,43 +28,36 @@ void diceGame()
   in_stream >> balance;
   in_stream.close();
 
-  
 
-  do
-  {
+
+  do {
     diceRules();
     cout << "Your current balance is $" << balance << endl;
     cout << endl;
 
-    do
-    {
+    do {
       cout << "Enter your bet ";
       cin >> bettingAmount;
-      if(bettingAmount > balance)
-      {
+      if(bettingAmount > balance) {
         cout << "That's more than what ya got! Try being a little reasonable" << endl;
       }
     }while(bettingAmount > balance);
 
-    do
-    {
+    do {
       cout << "Go ahead and pick a number from 1 to 10: ";
       cin >> guess;
 
-      if(guess <= 0 || guess > 10)
-      {
+      if(guess <= 0 || guess > 10) {
         cout << "Please follow the rules and choose a correct number." << endl;
       }
     }while(guess <= 0 || guess > 10);
 
     dice = rand() % 10 + 1;
-    if(dice == guess)
-    {
+    if(dice == guess) {
       cout << "Correct! You've won $" << bettingAmount * 10 << "!" << endl;
       balance = balance + bettingAmount * 10;
     }
-    else
-    {
+    else {
       cout << "Looks like you've guess wrong. You lost $" << bettingAmount << "." << endl;
       balance = balance - bettingAmount;
     }
@@ -73,8 +65,7 @@ void diceGame()
     cout << "The correct number was " << dice << "." << endl;
     cout << "Ok, " << playerName << " your balance is $" << balance << endl;
 
-    if(balance == 0)
-    {
+    if(balance == 0) {
       cout << "Seems that you aren't as lucky as you lead me to believe." << endl;
       ofstream out_stream;
       out_stream.open("balance.txt");
@@ -82,27 +73,25 @@ void diceGame()
       out_stream.close();
       break;
     }
-    
 
-    cout << "Would you like to play again (y/n)?" 
+
+    cout << "Would you like to play again (y/n)?"
          << " If you don't select either I'll just take it as a yes...";
     cin >> choice;
 
-    if((choice == 'y') || (choice == 'Y'))
-    {
+    if((choice == 'y') || (choice == 'Y')) {
       playing = true;
     }
-    else if((choice == 'n') || (choice == 'N'))
-    {
+    else if((choice == 'n') || (choice == 'N')) {
       ofstream out_stream;
       out_stream.open("balance.txt");
       out_stream << balance << endl;
       out_stream.close();
       playing = false;
     }
-    
-    
+
+
   }while(playing); //Something happening here that even when I select something other then y it would still loop.
 
-  
+
 }
