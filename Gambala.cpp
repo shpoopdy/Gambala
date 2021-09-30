@@ -24,8 +24,7 @@
 using namespace std;
 
 
-void Gambala()
-{
+void Gambala() {
   int balance;
   int guess;
   string playerName;
@@ -45,8 +44,7 @@ void Gambala()
   //Checking if you have the two necessary txt files.
   //=================================================
   in_stream.open("balance.txt");
-  if(!in_stream)
-  {
+  if(!in_stream) {
     out_stream.open("balance.txt");
     balance = 0;
     out_stream << balance;
@@ -55,8 +53,7 @@ void Gambala()
   in_stream.close();
 
   in_stream.open("tmp.txt");
-  if(!in_stream)
-  {
+  if(!in_stream) {
     out_stream.open("tmp.txt");
     out_stream.close();
   }
@@ -65,12 +62,10 @@ void Gambala()
 
   //Decrypter
   //==============
-  if(balance != 0)
-  {
+  if(balance != 0) {
     out_stream.open("balance.txt");
     in_stream.open("tmp.txt");
-    while(in_stream >> ch)
-    {
+    while(in_stream >> ch) {
       ch = ch - 100;
       out_stream << ch;
     }
@@ -83,8 +78,7 @@ void Gambala()
   in_stream.close();
 
 
-  if(balance == 0)
-  {
+  if(balance == 0) {
     cout << "HO HO! A fine name indeed. As a matter of fact, I like that name "
          << "sooo much I'm gonna give you $100 to get you started!" << endl;
     balance = 100;
@@ -92,8 +86,7 @@ void Gambala()
     out_stream << balance << endl;
     out_stream.close();
   }
-  else
-  {
+  else {
     cout << "HO HO! A fine name indeed my friend, OH! Looks like you have $"
          << balance << "...care to gamble a little??" << endl;
   }
@@ -106,12 +99,10 @@ void Gambala()
     cout << "To play Dice enter 1, enter 2 for Blackjack. "
          << "If you'd like to leave then enter 3: ";
     cin >> game_choice;
-    if(game_choice == 1)
-    {
+    if(game_choice == 1) {
       diceGame();
     }
-    else if(game_choice == 2)
-    {
+    else if(game_choice == 2) {
       blackJackGame();
     }
   }while(game_choice != 3);
@@ -120,11 +111,9 @@ void Gambala()
   // Encrypter
   //==============================
   in_stream.open("balance.txt");
-  if(in_stream)
-  {
+  if(in_stream) {
     out_stream.open("tmp.txt");
-    while(in_stream >> ch)
-    {
+    while(in_stream >> ch) {
       ch = ch+100;
       out_stream << ch;
     }
@@ -134,8 +123,7 @@ void Gambala()
 
   out_stream.open("balance.txt");
   in_stream.open("tmp.txt");
-  while(in_stream >> ch)
-  {
+  while(in_stream >> ch) {
     out_stream << ch;
   }
   out_stream.close();
@@ -144,8 +132,7 @@ void Gambala()
 };
 
 
-int main()
-{
+int main() {
     Gambala();
 
 
