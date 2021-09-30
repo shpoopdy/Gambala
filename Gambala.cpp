@@ -30,10 +30,8 @@ void Gambala()
   int guess;
   string playerName;
   int bettingAmount;
-  int dice;
   int game_choice;
   char ch;
-  int test;
   srand(time(0));
 
   cout << "========== Gambala ==========" << endl;
@@ -106,7 +104,7 @@ void Gambala()
     in_stream >> balance;
     in_stream.close();
     cout << "To play Dice enter 1, enter 2 for Blackjack. "
-         << "If you'd like to leave then enter 3: "; 
+         << "If you'd like to leave then enter 3: ";
     cin >> game_choice;
     if(game_choice == 1)
     {
