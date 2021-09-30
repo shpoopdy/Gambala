@@ -1,3 +1,9 @@
+/* cpp file for Deck
+
+By: Mikey
+Last modified: 2021-09-29
+*/
+
 #include "Deck.h"
 #include <iostream>
 #include <algorithm>

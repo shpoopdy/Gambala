@@ -1,7 +1,7 @@
 /* Header file for Card class
 
 By: Mikey
-Last modified: 2021-06-19
+Last modified: 2021-09-29
  */
 
 #ifndef CARD_H

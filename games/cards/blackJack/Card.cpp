@@ -1,3 +1,9 @@
+/* cpp file for Card
+
+By: Mikey
+Last modified: 2021-09-29
+*/
+
 #include <iostream>
 #include <vector>
 #include "Card.h"
