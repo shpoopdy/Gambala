@@ -10,19 +10,16 @@ Last modified: 2021-06-19
 #include <string>
 #include <vector>
 
-class Card 
-{
+class Card  {
     public:
-        enum Suits
-        {
+        enum Suits {
             HEARTS,
             DIAMONDS,
             CLUBS,
             SPADES
         };
 
-        enum Ranks
-        {
+        enum Ranks {
             ACE = 1,
             TWO,
             THREE,
@@ -52,11 +49,10 @@ class Card
 };
 
 
-class Hand
-{
+class Hand {
 
     // Field
-    private: 
+    private:
         std::vector<Card> hand;
         int countAces = 0;
 
