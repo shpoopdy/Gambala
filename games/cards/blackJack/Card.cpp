@@ -2,71 +2,55 @@
 #include <vector>
 #include "Card.h"
 
-Card::Card(Ranks r, Suits s)
-{
+Card::Card(Ranks r, Suits s) {
     this->rank = r;
     this->suit = s;
 }
 
-Card::Ranks Card::getRank()
-{
+Card::Ranks Card::getRank() {
     return rank;
 }
 
-Card::Suits Card::getSuit()
-{
+Card::Suits Card::getSuit() {
     return suit;
 }
 
-int Card::getValue()
-{
-    if(rank <= TEN)
-    {
+int Card::getValue() {
+    if(rank <= TEN) {
         return static_cast<int>(rank);
     }
-    else if(rank <= KING)
-    {
+    else if(rank <= KING) {
         return 10;
     }
 }
 
-void Card::cardDisplay()
-{
-    if(rank == ACE)
-    {
+void Card::cardDisplay() {
+    if(rank == ACE) {
         std::cout << "Ace";
     }
-    else if(rank <= TEN)
-    {
+    else if(rank <= TEN) {
     std::cout << rank;
-    } 
-    else if(rank == JACK)
-    {
+    }
+    else if(rank == JACK) {
         std::cout << "Jack";
     }
-    else if(rank == QUEEN)
-    {
+    else if(rank == QUEEN) {
         std::cout << "Queen";
     }
-    else
-    {
+    else {
         std::cout << "King";
     }
 
-    if(suit == HEARTS)
-    {
+    if(suit == HEARTS) {
         std::cout << " of Hearts";
     }
-    else if(suit == DIAMONDS)
-    {
+    else if(suit == DIAMONDS) {
         std::cout << " of Diamonds";
     }
-    else if(suit == CLUBS )
-    {
+    else if(suit == CLUBS ) {
         std::cout << " of Clubs";
     }
-    else
-    {
+    else {
         std::cout << " of Spades";
     }
 }
@@ -75,44 +59,36 @@ void Card::cardDisplay()
 
 // Hand
 
-void Hand::add(Card c)
-{
-    if (c.getRank() == 1)
-    {
+void Hand::add(Card c) {
+    if (c.getRank() == 1) {
         this->countAces++;
     }
 
     hand.push_back(c);
 };
 
-void Hand::clear()
-{
+void Hand::clear() {
     (this->countAces) = 0;
     (this->hand).clear();
 };
 
-int Hand::getTotal() const
-{
+int Hand::getTotal() const {
     std::vector<Card> h = this->hand;
 
     int total = 0;
-    for (Card card: h)
-    {
+    for (Card card: h) {
         total += card.getValue();
     }
 
     int countA = this->countAces;
 
-    while (total != 21 && countA > 0)
-    {
+    while (total != 21 && countA > 0) {
         // Make aces count for 11 instead of 1
-        if (total <= 11)
-        {
+        if (total <= 11) {
             total += 10;
             countA -= 1;
         }
-        else
-        {
+        else {
             break;
         }
     }
@@ -120,25 +96,20 @@ int Hand::getTotal() const
     return total;
 };
 
-std::vector<Card> Hand::getVecHand()
-{
+std::vector<Card> Hand::getVecHand() {
     return this->hand;
 }
 
-void Hand::display_hand() const
-{
-    for(int i = 0; i < hand.size(); i++)
-    {
+void Hand::display_hand() const {
+    for(int i = 0; i < hand.size(); i++) {
         Card cardCopy = hand[i];
         cardCopy.cardDisplay();
-        if(i == 0)
-        {
+        if(i == 0) {
             std::cout << " and a ";
         }
-        else
-        {
+        else {
             std::cout << "!";
         }
-        
+
     }
 }
