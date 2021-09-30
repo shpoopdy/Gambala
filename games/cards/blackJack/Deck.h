@@ -4,8 +4,7 @@
 #include <deque>
 #include "Card.h"
 
-class Deck
-{
+class Deck {
     public:
         Deck();
         ~Deck();
