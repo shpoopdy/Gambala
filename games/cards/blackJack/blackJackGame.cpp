@@ -77,7 +77,7 @@ void blackJackGame() {
       deck.PopCard();
       std::cout << std::endl;
 
-      std::cout << "Dealer has a "; card_ptr->test();
+      std::cout << "Dealer has a "; card_ptr->cardDisplay();
       std::cout << ".\n";
       delete card_ptr;
       card_ptr = NULL;
@@ -94,7 +94,7 @@ void blackJackGame() {
         if(hit == 1) {
           card_ptr = deck.TopCard();
           std::cout << "You received a ";
-          card_ptr->test();
+          card_ptr->cardDisplay();
           std::cout << std::endl;
           player.add(*card_ptr);
           //playerTotal = player.getTotal();
@@ -110,7 +110,7 @@ void blackJackGame() {
           do {
             card_ptr = deck.TopCard();
             std::cout << "Dealer received a ";
-            card_ptr->test();
+            card_ptr->cardDisplay();
             dealer.add(*card_ptr);
             //dealerTotal = dealer.getTotal();
             deck.PopCard();

@@ -26,7 +26,7 @@ Deck::~Deck() {
 
 void Deck::testPrint() {
     for(Card* card : deck) {
-        card->test();
+        card->cardDisplay();
         std::cout << " ";
     }
 }
