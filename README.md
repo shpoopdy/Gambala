@@ -1,2 +1,4 @@
 # Gambala
-Silly Gambling
+An attempt at making a text based casino game using C++.
+As I take more classes I hope that this will only get better, 
+structure wise and in overall enjoyment.
