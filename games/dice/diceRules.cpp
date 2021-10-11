@@ -1,7 +1,7 @@
 /* cpp file for function: diceRules
 
 By: Mikey
-Last modified: 2021-09-29
+Last modified: 2021-10-10
  */
 #include <iostream>
 #include <string>
