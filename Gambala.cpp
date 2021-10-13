@@ -1,13 +1,8 @@
 /*----
-  signature: calc_change: int int int int -> double
-  purpose: Expects a quantity of quarters, dimes, nickels, and pennies
-            and returns the sum total of all these coins.
-  tests:
-      calc_change(4, 5, 2, 5) == 1.65
-      calc_change(3, 2, 1, 0) == 1.00
+  cpp file for Gambala
 
   by: Mikey
-  last modified: 2021-10-10
+  last modified: 2021-10-13
 ----*/
 
 #include <iostream>
@@ -26,7 +21,6 @@ using namespace std;
 
 void Gambala() {
   int balance;
-  int guess;
   string playerName;
   int bettingAmount;
   int game_choice;
@@ -90,7 +84,7 @@ void Gambala() {
   if(balance == 0) {
     balance = 50;
     out_stream.open("balance.txt");
-    out_stream << balance << endl;
+    out_stream << balance;
     out_stream.close();
   }
 
