@@ -3,7 +3,7 @@
 By: Mikey
 Last modified: 2021-09-29
 */
-
+// Could make the check for bust by placing them in the Hand Class
 
 #include <iostream>
 #include <cstdlib>
@@ -23,48 +23,38 @@ void blackJackGame() {
     int balance;
     Hand player;
     Hand dealer;
+    int hit;
+    bool playerBust = false;
+    bool dealerBust = false;
+    bool hasAce = false;
     std::ifstream in_stream;
     in_stream.open("balance.txt");
     in_stream >> balance;
     in_stream.close();
 
-
-
-
-
+    // This displays your current balance and rules in terminal
     do {
       blackJackRules();
       std::cout << "Your current balance is $" << balance << std::endl;
       std::cout << std::endl;
       srand (time (0));
-      int hit;
-      bool playerBust = false;
-      bool dealerBust = false;
-      bool hasAce = false;
       Deck deck;
       deck.Shuffle();
 
-
-
-
-
+      //Check to make sure they have enough funds.
       do {
-        //Check to make sure they have enough funds.
         std::cout << "Enter your bet ";
         std::cin >> bettingAmount;
         if(bettingAmount > balance)
         {
-          std::cout << "That's more than what ya got! Try being a little reasonable" << std::endl;
+          std::cout << "That's more than what ya got! Try being a little reasonable \n";
         }
       }while(bettingAmount > balance);
 
-
-      int playerTotal = 0;
-      int dealerTotal = 0;
-      // Maybe make this a function in Card class
-      // have one called dealBlackJack.
+      // Maybe make deal a function in Card class
+      // have it called dealBlackJack.
+      // Deals two cards to the player
       for(int i = 0; i < 2; i++) {
-        //Deals two cards to the player.
         card_ptr = deck.TopCard();
         player.add(*card_ptr);
         delete card_ptr;
@@ -74,6 +64,7 @@ void blackJackGame() {
 
       std::cout << "You have "; player.display_hand();
 
+      // Maybe I can make this a draw card function
       card_ptr = deck.TopCard();
       dealer.add(*card_ptr);
       deck.PopCard();
@@ -83,12 +74,8 @@ void blackJackGame() {
       std::cout << ".\n";
       delete card_ptr;
       card_ptr = NULL;
-      //dealerTotal = dealer.getTotal();
 
-
-
-
-
+      // Hit or pass phase
       do {
         std::cout << "Your total is " << player.getTotal() << ".\n";
         std::cout << "Press 1 for another card or 2 to stay: ";
@@ -99,7 +86,6 @@ void blackJackGame() {
           card_ptr->cardDisplay();
           std::cout << std::endl;
           player.add(*card_ptr);
-          //playerTotal = player.getTotal();
           deck.PopCard();
           if(player.getTotal() > 21) {
             std::cout << "Oof, looks like you bust son.\n";
@@ -114,7 +100,6 @@ void blackJackGame() {
             std::cout << "Dealer received a ";
             card_ptr->cardDisplay();
             dealer.add(*card_ptr);
-            //dealerTotal = dealer.getTotal();
             deck.PopCard();
             std::cout << std::endl;
             std::cout << "Dealer total is " << dealer.getTotal() << ".\n";
@@ -136,12 +121,12 @@ void blackJackGame() {
       }
       else if(dealerBust == true) {
         std::cout << "Dealer bust! You've won $" << bettingAmount * 2 << ".\n";
-        balance = balance + (bettingAmount * 2);
+        balance += bettingAmount * 2;
       }
       else if(player.getTotal() > dealer.getTotal()) {
         std::cout << "You won with " << player.getTotal() << "! "
              << "You've earned $" << bettingAmount * 2 << ".\n";
-        balance = balance + (bettingAmount * 2);
+        balance += bettingAmount * 2;
       }
       else if(player.getTotal() == dealer.getTotal()) {
         std::cout << "It's a push! You get your money back.";
@@ -152,28 +137,27 @@ void blackJackGame() {
       }
 
 
-      std::cout << "To continue enter y, otherwise any key will take you out:  ";
-      std::cin >> choice;
-      player.clear();
-      dealer.clear();
-
       if(balance == 0) {
         std::cout << "Looks like you've reached your end..." << std::endl;
         playing = false;
       }
-      else if((choice == 'y') || (choice == 'Y')) {
-        playing = true;
-      }
       else {
-        std::ofstream out_stream;
-        out_stream.open("balance.txt");
-        out_stream << balance << std::endl;
-        out_stream.close();
-        delete card_ptr;
-        card_ptr = NULL;
-        playing = false;
+        std::cout << "To continue enter y, otherwise any key will take you out:  ";
+        std::cin >> choice;
+        player.clear();
+        dealer.clear();
+        if((choice == 'y') || (choice == 'Y')) {
+          playing = true;
+        }
+        else {
+          std::ofstream out_stream;
+          out_stream.open("balance.txt");
+          out_stream << balance << std::endl;
+          out_stream.close();
+          delete card_ptr;
+          card_ptr = NULL;
+          playing = false;
+        }
       }
-
     }while(playing);
-
 }
