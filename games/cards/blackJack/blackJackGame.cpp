@@ -61,6 +61,8 @@ void blackJackGame() {
 
       int playerTotal = 0;
       int dealerTotal = 0;
+      // Maybe make this a function in Card class
+      // have one called dealBlackJack.
       for(int i = 0; i < 2; i++) {
         //Deals two cards to the player.
         card_ptr = deck.TopCard();
