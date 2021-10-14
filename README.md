@@ -5,7 +5,7 @@ structure wise and in overall enjoyment.
 
 # How to use
 If you clone this into your given directory you will see in the main.cpp file on the top 
-there is a g++ line that you can use to run the first time. 
+there is a g++ line that you can enter into the terminal to run the first time. 
 When you run this it will create a balance.txt file, tmp.txt file, 
 and a user.txt file. It will ask for your name and then it will just 
 show you your options for games. After that first time running it 
