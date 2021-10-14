@@ -11,3 +11,7 @@ and a user.txt file. It will ask for your name and then it will just
 show you your options for games. After that first time running it 
 there will be the main.exe file in the same directory as the main.cpp 
 which you will be able to click and run the program from there.
+
+# Requirements
+The only requirment for this is that you can compile and run C++ code 
+on your machine.
