@@ -12,9 +12,7 @@
 #include "Gambala.h"
 #include "games/dice/diceRules.h"
 #include "games/dice/diceGame.h"
-#include "games/cards/blackJack/blackJackGame.h"
-#include "games/cards/blackJack/Card.h"
-#include "games/cards/blackJack/Deck.h"
+#include "games/blackJack/blackJackGame.h"
 
 using namespace std;
 
