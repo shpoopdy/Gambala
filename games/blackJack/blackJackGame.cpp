@@ -12,8 +12,8 @@ Last modified: 2021-09-29
 #include <vector>
 #include "blackJackRules.h"
 #include "blackJackGame.h"
-#include "Card.h"
-#include "Deck.h"
+#include "../cards/Card.h"
+#include "../cards/Deck.h"
 
 void blackJackGame() {
     Card *card_ptr = NULL;
@@ -43,7 +43,7 @@ void blackJackGame() {
 
       //Check to make sure they have enough funds.
       do {
-        std::cout << "Enter your bet ";
+        std::cout << "Enter your bet $";
         std::cin >> bettingAmount;
         if(bettingAmount > balance)
         {
