@@ -31,21 +31,20 @@ void Gambala() {
   //Checking if you have the three necessary txt files.
   //=================================================
   in_stream.open("user.txt");
-  if(!in_stream) {
+  if (!in_stream) {
     out_stream.open("user.txt");
     cout << "========== Gambala ==========" << endl;
     cout << "Welcome to Gambala you lucky ducky! What is thy name??" << endl;
     getline(cin, playerName);
     out_stream << playerName;
     out_stream.close();
-  }
-  else {
+  } else {
     in_stream >> playerName;
   }
   in_stream.close();
 
   in_stream.open("balance.txt");
-  if(!in_stream) {
+  if (!in_stream) {
     out_stream.open("balance.txt");
     balance = 0;
     out_stream << balance;
@@ -54,7 +53,7 @@ void Gambala() {
   in_stream.close();
 
   in_stream.open("tmp.txt");
-  if(!in_stream) {
+  if (!in_stream) {
     out_stream.open("tmp.txt");
     out_stream.close();
   }
@@ -63,10 +62,10 @@ void Gambala() {
 
   //Decrypter
   //==============
-  if(balance != 0) {
+  if (balance != 0) {
     out_stream.open("balance.txt");
     in_stream.open("tmp.txt");
-    while(in_stream >> ch) {
+    while (in_stream >> ch) {
       ch = ch - 100;
       out_stream << ch;
     }
@@ -79,7 +78,7 @@ void Gambala() {
   in_stream.close();
 
 
-  if(balance == 0) {
+  if (balance == 0) {
     balance = 50;
     out_stream.open("balance.txt");
     out_stream << balance;
@@ -98,19 +97,18 @@ void Gambala() {
     cout << "Press 3 to exit Gambala\n";
     cout << playerName << "'s balance $" << balance << endl;
     cin >> game_choice;
-    if(game_choice == 1) {
+    if (game_choice == 1) {
       diceGame();
-    }
-    else if(game_choice == 2) {
+    } else if (game_choice == 2) {
       blackJackGame();
     }
-  }while(game_choice != 3);
+  } while (game_choice != 3);
 
 
   // Encrypter
   //==============================
   in_stream.open("balance.txt");
-  if(in_stream) {
+  if (in_stream) {
     out_stream.open("tmp.txt");
     while(in_stream >> ch) {
       ch = ch+100;
@@ -122,7 +120,7 @@ void Gambala() {
 
   out_stream.open("balance.txt");
   in_stream.open("tmp.txt");
-  while(in_stream >> ch) {
+  while (in_stream >> ch) {
     out_stream << ch;
   }
   out_stream.close();
