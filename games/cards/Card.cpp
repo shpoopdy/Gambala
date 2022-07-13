@@ -22,41 +22,33 @@ Card::Suits Card::getSuit() {
 }
 
 int Card::getValue() {
-    if(rank <= TEN) {
+    if (rank <= TEN) {
         return static_cast<int>(rank);
-    }
-    else if(rank <= KING) {
+    } else if (rank <= KING) {
         return 10;
     }
 }
 
 void Card::cardDisplay() {
-    if(rank == ACE) {
+    if (rank == ACE) {
         std::cout << "Ace";
-    }
-    else if(rank <= TEN) {
+    } else if (rank <= TEN) {
     std::cout << rank;
-    }
-    else if(rank == JACK) {
+    } else if (rank == JACK) {
         std::cout << "Jack";
-    }
-    else if(rank == QUEEN) {
+    } else if (rank == QUEEN) {
         std::cout << "Queen";
-    }
-    else {
+    } else {
         std::cout << "King";
     }
 
-    if(suit == HEARTS) {
+    if (suit == HEARTS) {
         std::cout << " of Hearts";
-    }
-    else if(suit == DIAMONDS) {
+    } else if (suit == DIAMONDS) {
         std::cout << " of Diamonds";
-    }
-    else if(suit == CLUBS ) {
+    } else if (suit == CLUBS ) {
         std::cout << " of Clubs";
-    }
-    else {
+    } else {
         std::cout << " of Spades";
     }
 }
@@ -93,8 +85,7 @@ int Hand::getTotal() const {
         if (total <= 11) {
             total += 10;
             countA -= 1;
-        }
-        else {
+        } else {
             break;
         }
     }
@@ -110,12 +101,10 @@ void Hand::display_hand() const {
     for(int i = 0; i < hand.size(); i++) {
         Card cardCopy = hand[i];
         cardCopy.cardDisplay();
-        if(i == 0) {
+        if (i == 0) {
             std::cout << " and a ";
-        }
-        else {
+        } else {
             std::cout << "!";
         }
-
     }
 }
