@@ -41,23 +41,22 @@ void diceGame() {
       if(bettingAmount > balance) {
         cout << "That's more than what ya got! Try being a little reasonable" << endl;
       }
-    }while(bettingAmount > balance);
+    } while (bettingAmount > balance);
 
     do {
       cout << "Go ahead and pick a number from 1 to 10: ";
       cin >> guess;
 
-      if(guess <= 0 || guess > 10) {
+      if (guess <= 0 || guess > 10) {
         cout << "Please follow the rules and choose a correct number." << endl;
       }
-    }while(guess <= 0 || guess > 10);
+    } while (guess <= 0 || guess > 10);
 
     dice = rand() % 10 + 1;
-    if(dice == guess) {
+    if (dice == guess) {
       cout << "Correct! You've won $" << bettingAmount * 10 << "!" << endl;
       balance = balance + bettingAmount * 10;
-    }
-    else {
+    } else {
       cout << "Looks like you've guess wrong. You lost $" << bettingAmount << "." << endl;
       balance = balance - bettingAmount;
     }
@@ -65,7 +64,7 @@ void diceGame() {
     cout << "The correct number was " << dice << "." << endl;
     cout << "Ok, " << playerName << " your balance is $" << balance << endl;
 
-    if(balance == 0) {
+    if (balance == 0) {
       cout << "Seems that you aren't as lucky as you lead me to believe." << endl;
       ofstream out_stream;
       out_stream.open("balance.txt");
@@ -79,10 +78,10 @@ void diceGame() {
          << " If you don't select either I'll just take it as a yes...";
     cin >> choice;
 
-    if((choice == 'y') || (choice == 'Y')) {
+    //Can I make a function that will be used on choice to make it lowercase?
+    if ((choice == 'y') || (choice == 'Y')) {
       playing = true;
-    }
-    else if((choice == 'n') || (choice == 'N')) {
+    } else if ((choice == 'n') || (choice == 'N')) {
       ofstream out_stream;
       out_stream.open("balance.txt");
       out_stream << balance << endl;
@@ -91,7 +90,6 @@ void diceGame() {
     }
 
 
-  }while(playing); //Something happening here that even when I select something other then y it would still loop.
-
+  } while (playing); //Something happening here that even when I select something other then y it would still loop.
 
 }

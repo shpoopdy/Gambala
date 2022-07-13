@@ -5,7 +5,7 @@
   last modified: 2021-10-10
 ----*/
 
-#ifndef GAMBALA_H    // replace X with the NAME of your function in all-caps
+#ifndef GAMBALA_H
 #define GAMBALA_H
 
 void Gambala();
