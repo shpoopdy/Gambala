@@ -1,8 +1,8 @@
 /*----
   header file for function: Gambala
 
-  by: Mikey
-  last modified: 2021-10-10
+  by: Mikey Crispy
+  last modified: 2022-09-20
 ----*/
 
 #ifndef GAMBALA_H
