@@ -1,7 +1,7 @@
 /* cpp file for blackJackGame
 
 By: Mikey
-Last modified: 2021-09-29
+Last modified: 2022-10-25
 */
 // Could make the check for bust by placing them in the Hand Class
 
@@ -76,6 +76,7 @@ void blackJackGame() {
       card_ptr = NULL;
 
       // Hit or pass phase
+      //TODO: Make this a function in card.cpp file
       do {
         std::cout << "Your total is " << player.getTotal() << ".\n";
         std::cout << "Press 1 for another card or 2 to stay: ";
